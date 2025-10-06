@@ -23,8 +23,20 @@
         </nav>
     </header>
 
-    <main>
-        Lista de Livros
+    <main class="mx-auto max-w-screen-lg space-y-6">
+        <form class="w-full flex space-x-2 mt-6">
+            <input
+                type="text"
+                class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1"
+                placeholder="Pesquisar..."
+            />
+
+            <button type="submit">🔎</button>
+        </form>
+
+        <div>
+            Lista Final
+        </div>
     </main>
 </body>
 </html>
