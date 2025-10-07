@@ -2,7 +2,6 @@
 
     require 'dados.php';
 
-    $view = 'index';
+    view('index', compact('books'));
 
-    require 'views/template/app.php';
 

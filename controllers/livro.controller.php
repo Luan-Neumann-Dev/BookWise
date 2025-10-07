@@ -8,8 +8,6 @@ $filtrado = array_filter($books, fn($book) => $book['id'] == $id);
 
 $book = array_pop($filtrado);
 
-$view = 'livro';
-
-require 'views/template/app.php'
+view('livro', compact('book'));
 ?>
 
