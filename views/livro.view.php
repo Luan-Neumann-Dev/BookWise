@@ -8,7 +8,7 @@
 
         <div class="space-y-1">
 
-            <a href="/livro.php?id=<?= $book['id'] ?>" class="font-semibold hover:underline"><?= $book['titulo'] ?></a>
+            <a href="/livro?id=<?= $book['id'] ?>" class="font-semibold hover:underline"><?= $book['titulo'] ?></a>
             <div class="text-xs italic"><?= $book['autor'] ?></div>
             <div class="text-xs italic">⭐⭐⭐⭐⭐(3 Avaliações)</div>
 
