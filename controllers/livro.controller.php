@@ -1,8 +1,6 @@
 <?php
 
-$id = $_REQUEST['id'];
-
-$book = (new DB)->book($id);
+$book = (new DB)->book($_REQUEST['id']);
 
 view('livro', compact('book'));
 ?>
