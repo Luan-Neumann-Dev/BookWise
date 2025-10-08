@@ -1,12 +1,8 @@
 <?php
 
-require 'dados.php';
-
 $id = $_REQUEST['id'];
 
-$filtrado = array_filter($books, fn($book) => $book['id'] == $id);
-
-$book = array_pop($filtrado);
+$book = (new DB)->book($id);
 
 view('livro', compact('book'));
 ?>

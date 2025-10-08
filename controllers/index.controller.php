@@ -1,8 +1,6 @@
 <?php
 
-    $db = new DB();
-
-    $books = $db->books();
+    $books = (new DB)->books();
 
     view('index', compact('books'));
 

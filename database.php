@@ -2,28 +2,31 @@
 
 class DB {
 
-    /**
-     * Retorna todos os livros do banco de dados
-     *
-     * @return array[Livro]
-     *
-     */
-    public function books(): array {
-        $db = new PDO('sqlite:database.sqlite');
-        $query = $db->query("select * from books");
+    private $db;
+
+    public function __construct() {
+
+        $this->db = new PDO('sqlite:database.sqlite');
+
+    }
+
+    public function books() {
+        $query = $this->db->query('SELECT * FROM books');
+
         $items = $query->fetchAll();
 
-        $results = [];
+        return array_map(fn($item) => Book::make($item), $items);
+    }
 
-        foreach ($items as $item) {
-           $book = new Book;
-           $book->id = $item["id"];
-           $book->title = $item["title"];
-           $book->author = $item["author"];
-           $book->description = $item["description"];
-           $results[] = $book;
-        }
+    public function book($id) {
 
-        return $results;
+        $sql = "select * from books where id = {$id}";
+
+        $query = $this->db->query($sql);
+
+        $items = $query->fetchAll();
+
+        return array_map(fn($item) => Book::make($item), $items)[0];
+
     }
 }
