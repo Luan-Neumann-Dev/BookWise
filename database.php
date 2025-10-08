@@ -10,10 +10,14 @@ class DB {
 
     }
 
-    public function books() {
-        $query = $this->db->query('SELECT * FROM books');
+    public function books($search = null) {
+        $prepare = $this->db->prepare("select * from books where user_id = 1 and title like :search");
 
-        $items = $query->fetchAll();
+        $prepare->bindValue('search', "%$search%");
+
+        $prepare->execute();
+
+        $items = $prepare->fetchAll();
 
         return array_map(fn($item) => Book::make($item), $items);
     }
