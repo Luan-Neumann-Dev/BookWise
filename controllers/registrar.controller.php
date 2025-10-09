@@ -4,7 +4,7 @@ require 'Validation.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    ''$validation = Validation::validate([
+    $validation = Validation::validate([
        'name' => ['required'],
        'email' => ['required', 'email', 'confirmed'],
 //       'password' => ['required', 'min:8', 'max:30', 'strong'],
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($validation->failed()) {
 
-        $_SESSION['$validations'] = $validation->$validations;
+        $_SESSION['$validations'] = $validation->validations;
 
         header("Location: /login");
 
