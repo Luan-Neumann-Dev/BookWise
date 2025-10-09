@@ -4,10 +4,15 @@ class DB {
 
     private $db;
 
-    public function __construct() {
+    public function __construct($config) {
 
-        $this->db = new PDO('sqlite:database.sqlite');
+        $config = [
+            'driver' => 'sqlite',
+            'database' => 'database.sqlite',
+        ];
+        $connectionString = $config['driver'] . ':' . $config['database'];
 
+        $this->db = new PDO($connectionString);
     }
 
     public function query($query, $class = null, $params = [])
@@ -22,29 +27,6 @@ class DB {
 
         return $prepare;
     }
-
-    public function books($search = null) {
-        $prepare = $this->db->prepare("select * from books where user_id = 1 and title like :search");
-
-        $prepare->bindValue('search', "%$search%");
-
-        $prepare->setFetchMode(PDO::FETCH_CLASS, Book::class);
-
-        $prepare->execute();
-
-        return $prepare->fetchAll();
-    }
-
-    public function book($id) {
-
-        $prepare = $this->db->prepare("select * from books where id = :id");
-
-        $prepare->bindParam('id', $id);
-
-        $prepare->setFetchMode(PDO::FETCH_CLASS, Book::class);
-
-        $prepare->execute();
-
-        return $prepare->fetch();
-    }
 }
+
+$database = new DB($config['database']);

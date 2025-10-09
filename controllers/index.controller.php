@@ -2,7 +2,7 @@
 
     $search = $_REQUEST["search"] ?? '';
 
-    $books = (new DB)->query(
+    $books = $database->query(
         query: "select * from books where title like :search",
         class: Book::class,
         params: ['search' => "%$search%"]
