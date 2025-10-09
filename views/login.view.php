@@ -19,10 +19,13 @@
 
     <div class="border border-stone-700 rounded">
         <h1 class="border-b border-stone-700 text-stone-400 font-bold px-4 py-2">Registro</h1>
-        <form class="p-4 space-y-4">
+        <form class="p-4 space-y-4" method="POST" action="/registrar">
+            <?php if (strlen($mensagem > 0)):?>
+                <div class="border-green-800 bg-green-900 text-green-400 px-4 py-1 rounded-md border-2"><?= $mensagem ?></div>
+            <?php endif; ?>
             <div class="flex flex-col">
                 <label class="text-stone-400 mb-1">Nome</label>
-                <input type="text" name="nome" required class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1 w-full">
+                <input type="text" name="name" required class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1 w-full">
             </div>
 
             <div class="flex flex-col">

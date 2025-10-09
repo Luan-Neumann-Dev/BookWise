@@ -1,11 +1,14 @@
 <?php
 
 function dd(...$dump): void {
+    dump($dump);
+    die();
+}
+
+function dump(...$dump): void {
     echo '<pre>';
 
     var_dump($dump);
-
-    die();
 
     echo '</pre>';
 }
