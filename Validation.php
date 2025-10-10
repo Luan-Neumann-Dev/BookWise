@@ -1,7 +1,7 @@
 <?php
 
 class Validation {
-    public $validations;
+    public $validations = [];
 
     public static function validate($rules, $data) {
         $validation = new Validation();
@@ -12,6 +12,11 @@ class Validation {
 
                 if($rule == 'confirmed') {
                     $validation->$rule($field, $fieldValue, $data["confirmation_{$field}"]);
+                } else if (str_contains($rule, ':')) {
+                    $temp = explode(':', $rule);
+                    $rule = $temp[0];
+                    $ruleArg = $temp[1];
+                    $validation->$rule($ruleArg, $field, $fieldValue);
                 } else {
                     $validation->$rule($field, $fieldValue);
                 }
@@ -39,8 +44,31 @@ class Validation {
         }
     }
 
+    private function min($min, $field, $value): void {
+        if (strlen($value) <= $min) {
+            $this->validations[] = "O {$field} precisa ter um mínimo de {$min} caracteres";
+        }
+    }
+
+    private function max($max, $field, $value): void {
+        if (strlen($value) > $max) {
+            $this->validations[] = "O {$field} precisa ter um mínimo de {$max} caracteres";
+        }
+    }
+
+    private function strong($field, $value)
+    {
+        if (! strpbrk($value, "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~")) {
+
+            $this->validations[] = "A $field precisa um caractere especial nela.";
+
+        }
+    }
+
     public function failed()
     {
+        $_SESSION['validations'] = $this->validations;
+
         return sizeof($this->validations) > 0;
     }
 }

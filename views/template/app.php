@@ -19,7 +19,11 @@
             </ul>
 
             <ul>
-                <li><a href="/login">Fazer Login</a></li>
+                <?php if (isset($_SESSION['auth'])): ?>
+                    <li><a href="/logout">Oi <?= $_SESSION['auth']['name'] ?></a></li>
+                <?php else: ?>
+                    <li><a href="/login">Fazer Login</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>
