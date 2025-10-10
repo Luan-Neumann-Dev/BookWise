@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'password' => ['required'],
     ], $_POST);
 
-    if ($validation->failed()) {
+    if ($validation->failed('login')) {
         header("Location: /login");
         exit();
     }
@@ -24,10 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($user) {
         $_SESSION['auth'] = $user;
-        $_SESSION['mensagem'] = "Seja bem-vindo {$user->name}!";
+        flash()->push('mensagem', "Seja bem-vindo {$user->name}!");
         header("Location: /");
         exit();
     }
 }
 
-view('login', compact('mensagem'));
+view('login');

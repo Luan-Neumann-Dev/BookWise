@@ -26,3 +26,7 @@ function view($view, $data = []): void {
 
     require 'views/template/app.php';
 }
+
+function flash() {
+    return new Flash;
+}
