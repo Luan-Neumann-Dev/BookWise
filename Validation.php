@@ -65,6 +65,24 @@ class Validation {
         }
     }
 
+    private function unique($table, $field, $value): void {
+        if(strlen($value) == 0) {
+            return;
+        }
+
+        $db = new Database(config('database'));
+
+        $result = $db->query(
+            query: "select * from {$table} where {$field} = :value",
+            params: compact("value")
+        )->fetch();
+
+        if ($result) {
+            $this->validations[] = "O {$field} já está sendo usado.";
+        }
+
+    }
+
     public function failed($customName = null)
     {
         $key = 'validations';

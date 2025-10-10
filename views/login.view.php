@@ -6,7 +6,6 @@
             <?php if ($validations = flash()->get('validations_login')): ?>
                 <div class="border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-md border-2 text-sm font-bold">
                     <ul>
-                        <li>Deu Ruim!!</li>
                         <?php foreach ($validations as $validation):?>
                             <li><?= $validation ?></li>
                         <?php endforeach;?>
@@ -33,7 +32,6 @@
             <?php if ($validations = flash()->get('validations_register')): ?>
                 <div class="border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-md border-2 text-sm font-bold">
                     <ul>
-                        <li>Deu Ruim!!</li>
                         <?php foreach ($validations as $validation):?>
                             <li><?= $validation ?></li>
                         <?php endforeach;?>
