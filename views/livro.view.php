@@ -1,26 +1,6 @@
 <?php
-    $sumNotes = array_reduce($evaluations, function ($carry, $item) {
-        return ($carry ?? 0) + $item->note;
-    }) ?? 0;
-
-    $sumNotes = round($sumNotes / 5);
-    $endNote = str_repeat('⭐', $sumNotes);
+    require_once 'partials/_book.php'
 ?>
-
-<?= $book->title; ?>
-
-<div class="p-2 rounded border-stone-800 border-2 bg-stone-900">
-    <div class="flex">
-        <div class="w-1/3">Imagem</div>
-        <div class="space-y-1">
-            <a href="/livro?id=<?= $book->id ?>" class="font-semibold hover:underline"><?= $book->title ?></a>
-            <div class="text-xs italic"><?= $book->author ?></div>
-            <div class="text-xs italic"><?= $endNote ?>(<?=count($evaluations)?> Avaliações)</div>
-        </div>
-    </div>
-    <div class="text-sm mt-2"><?= $book->description ?></div>
-</div>
-
 <h2>Avaliações</h2>
 <div class="grid grid-cols-4 gap-4">
     <div class="col-span-3 gap-4 flex flex-col">

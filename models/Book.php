@@ -10,4 +10,6 @@ class Book {
     public $description;
     public $release_year;
     public $user_id;
+    public $evaluation_note;
+    public $evaluation_count;
 }
